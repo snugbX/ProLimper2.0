@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load static %}
+{% block 'title' %}Prolimper2.0{% endblock %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/clientes.css' %}">
+
+{% endblock %}
+
+{% block 'dashboard' %}
+    <div class="container">
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-danger" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="row">
+            <div onclick="exibir_form('1')" class="col-md card-dashboard">
+                <p class="text-card">Listar Vendedores</p>
+            </div>
+
+            <div onclick="exibir_form('2')" class="col-md card-dashboard">
+                <p class="text-card">Adicionar Vendedor</p>
+            </div>
+
+        </div>
+        <div id="lista-cliente" class="Lista">
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                        <th>WhatsApp</th>
+                        <th>Loja</th>
+                        <th>CNPJ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ven in vendedores %}
+                        <tr>
+                            <td>{{ven.nome}}</td>
+                            <td>{{ven.CPF}}</td>
+                            <td>{{ven.email}}</td>
+                            <td>{{ven.telefone}}</td>
+                            <td>{% if ven.whatsapp %}Sim {% else %} Não {% endif %}</td>
+                            <td>{{ven.loja}}</td>
+                            <td>{{ven.CNPJ}}</td>
+                            <td>
+                                <a href="{% url 'att_Vendedor' ven.id %}"><i class='bx bx-edit'></i></a>
+                                <a href="{% url 'del_Vendedor' ven.id %}"><i class='bx bx-trash' ></i></a>
+                            </td>
+                        </tr>
+                    {% endfor%}
+                </tbody>
+            </table>
+        </div>
+
+        <div id="adicionar-cliente" class="adicionar-cliente">
+            <form action="{% url "vendedor" %}"  method="POST">
+                {% csrf_token %}
+                <div>
+                    <br>
+                    <h3>Dados Pessoais do Vendedor</h3>
+                    <hr style="background-color:gray;">
+                    <p>Nome:</p>
+                    <input type="text" class="form-control" required placeholder="Nome Completo" name="nome" value="{{nome}}">
+                    <br>
+                    <p>CPF:</p>
+                    <input type="text" required class="form-control" placeholder="___.___.___-__" name="cpf" value="{{CPF}}">
+                    <br>
+                    <h3>Dados para Contato com o Vendedor</h3>
+                    <hr style="background-color:gray;">
+                    <p>E-mail:</p>
+                    <input type="email" required class="form-control" placeholder="nome@email.com" name="email" value="{{email}}">
+                    <br>
+                    <p>Telefone:</p>
+                    <input type="text" class="form-control" placeholder="() _ ____-____" name="telefone" value="{{telefone}}">
+                    <br>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="whatsapp">
+                      <option value="0" selected>Whatsapp ?</option>
+                      <option value="1">Sim</option>
+                      <option value="0">Não</option>
+                    </select>
+                    <br>
+                    <h3>Dados Da Loja</h3>
+                    <hr style="background-color:gray;">
+                    <p>Nome da Loja:</p>
+                    <input type="text" class="form-control" required placeholder="Nome Da Loja" name="loja" value="{{loja}}">
+                    <br>
+                    <p>CNPJ:</p>
+                    <input type="text" required class="form-control" placeholder="__.___.___/____-__" name="cnpj" value="{{CNPJ}}">
+                    <br>
+                </div>
+                <br>
+                <input type="submit" value="Cadastrar" class="btn-principal">
+            </form>
+        </div>
+
+        <div id="atualiza-cliente">
+            
+        </div>
+    </div>
+    <script src="{% static 'js/clientes.js' %}"></script>
+{% endblock %}

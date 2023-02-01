@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% load static %}
+{% block 'title' %}Prolimper2.0{% endblock %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/clientes.css' %}">
+
+{% endblock %}
+
+{% block 'dashboard' %}
+    <div class="container">
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-danger" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="row">
+            <div onclick="exibir_form('1')" class="col-md card-dashboard">
+                <p class="text-card">Listar clientes</p>
+            </div>
+
+            <div onclick="exibir_form('2')" class="col-md card-dashboard">
+                <p class="text-card">Adicionar clientes</p>
+            </div>
+
+        </div>
+        <div id="lista-cliente" class="Lista">
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>CNPJ</th>
+                        <th>Telefone</th>
+                        <th>Whatsapp</th>
+                        <th>Endereço</th>
+                        <th>Numero</th>
+                        <th>Bairro</th>
+                        <th>Complemento</th>
+                        <th>CEP</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cli in clientes %}
+                        <tr>
+                            <td>{{cli.nome}}</td>
+                            <td>{{cli.CPF}}</td>
+                            <td>{{cli.CNPJ}}</td>
+                            <td>{{cli.telefone}}</td>
+                            <td>{% if cli.Whatsapp %}Sim {% else %} Não {% endif %}</td>
+                            <td>{{cli.endereco}}</td>
+                            <td>{% if cli.numero_Casa == None %} Sem {% else %} {{cli.numero_Casa}} {% endif %}</td>
+                            <td>{{cli.bairro}}</td>
+                            <td>{{cli.complemento}}</td>
+                            <td>{{cli.CEP}}</td>
+                            <td>
+                                <a href="{% url 'att_Cliente' cli.id %}"><i class='bx bx-edit'></i></a>
+                                <a href="{% url 'delCliente' cli.id %}"><i class='bx bx-trash' ></i></a>
+                            </td>
+                        </tr>
+                    {% endfor%}
+                </tbody>
+            </table>
+        </div>
+
+        <div id="adicionar-cliente" class="adicionar-cliente">
+            <form action="{% url "clientes" %}"  method="POST">
+                {% csrf_token %}
+                <div>
+                    <br>
+                    <h3>Dados Pessoais</h3>
+                    <hr style="background-color:gray;">
+                    <p>Nome*:</p>
+                    <input type="text" class="form-control" required placeholder="Nome Completo" name="nome" value="{{nome}}">
+                    <br>
+                    <p>CPF*:</p>
+                    <input type="text" required class="form-control" placeholder="___.___.___-__" name="cpf" value="{{CPF}}">
+                    <br>
+                    <p>CNPJ:</p>
+                    <input type="text" class="form-control" placeholder="__.___.___/____-__" name="cnpj" value="{{CNPJ}}">
+                    <br>
+                    <h3>Dados para Contato</h3>
+                    <hr style="background-color:gray;">
+                    <p>E-mail*:</p>
+                    <input type="email" required class="form-control" placeholder="nome@email.com" name="email" value="{{email}}">
+                    <br>
+                    <p>Telefone:</p>
+                    <input type="text" class="form-control" placeholder="() _ ____-____" name="telefone" value="{{telefone}}">
+                    <br>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="whatsapp">
+                      <option value="0" selected>Whatsapp ?</option>
+                      <option value="1">Sim</option>
+                      <option value="0">Não</option>
+                    </select>
+                    <br>
+                    <h3>Endereço</h3>
+                    <hr style="background-color:gray;">
+                    <p>Logradouro:</p>
+                    <input type="text" class="form-control" placeholder="Logradouro" name="logradouro" value="{{endereco}}">
+                    <br>
+                    <p>Número:</p>
+                    <input type="number" class="form-control" placeholder="Nª: ______" name="numero" value="{{numero_Casa}}">
+                    <br>
+                    <p>Bairro:</p>
+                    <input type="text" class="form-control" placeholder="Bairro" name="bairro" value="{{bairro}}">
+                    <br>
+                    <p>Complemento:</p>
+                    <input type="text" class="form-control" placeholder="complemento" name="complemento" value="{{complemento}}">
+                    <br>
+                    <p>CEP:</p>
+                    <input type="text" class="form-control" placeholder="_____-___" name="cep" value="{{CEP}}">
+
+                </div>
+                <br>
+                <input type="submit" value="Cadastrar" class="btn-principal">
+            </form>
+        </div>
+
+        <div id="atualiza-cliente">
+            
+        </div>
+    </div>
+    <script src="{% static 'js/clientes.js' %}"></script>
+{% endblock %}
