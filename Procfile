@@ -1,1 +1,1 @@
-web: gunicorn ProLimper.wsgi --log-file -
+web: gunicorn ProLimper2.0.wsgi --log-file -
