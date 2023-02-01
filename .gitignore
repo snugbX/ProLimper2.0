@@ -5,3 +5,4 @@ venv
 development.py
 production.py
 testing.py
+db.sqlite3
