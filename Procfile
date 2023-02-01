@@ -1,1 +1,3 @@
-web: gunicorn ProLimper2.0.wsgi --log-file -
+web: gunicorn ProLimper2.wsgi --log-file -
+
+web: python manage.py migrate && gunicorn ProLimper2.wsgi

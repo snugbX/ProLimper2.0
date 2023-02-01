@@ -20,7 +20,7 @@ SECRET_KEY =  env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', True)
 
-ALLOWED_HOSTS = ['*.herokuapp.com','prolimper.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -137,4 +137,3 @@ MEDIA_URL = "/media/"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS = ['https://prolimper.herokuapp.com','http://prolimper.herokuapp.com']
