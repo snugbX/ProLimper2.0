@@ -1,12 +1,6 @@
 
 from pathlib import Path
-from dotenv import load_dotenv
-from environs import Env
 import os
-
-load_dotenv()
-env = Env()
-env.read_env()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -15,12 +9,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY =  env("SECRET_KEY")
+SECRET_KEY = 'django-insecure-wet+5-w-oc@)wn6x!hfelyt4b4o^^8e$oeeu3j_f+)85#$51=#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', True)
+DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -78,14 +72,26 @@ WSGI_APPLICATION = 'Prolimper2.wsgi.application'
 #    }
 #}
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'boaqbwabgmwyk8ld3up3',
+#        'USER': 'uuu9efdmyw3gdcxj',
+#        'PASSWORD': '3ZYLq67ql0HCdQy0wktQ',
+#        'HOST': 'boaqbwabgmwyk8ld3up3-mysql.services.clever-cloud.com',
+#        'PORT': '3306'
+#,
+#    }
+#}
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'boaqbwabgmwyk8ld3up3',
-        'USER': 'uuu9efdmyw3gdcxj',
-        'PASSWORD': '3ZYLq67ql0HCdQy0wktQ',
-        'HOST': 'boaqbwabgmwyk8ld3up3-mysql.services.clever-cloud.com',
-        'PORT': '3306'
+        'NAME': 'railway',
+        'USER': 'root',
+        'PASSWORD': 'OKvhJpHxNb02sh8Xj3Y0',
+        'HOST': 'containers-us-west-181.railway.app',
+        'PORT': '7332'
 ,
     }
 }
