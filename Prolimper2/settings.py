@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-wet+5-w-oc@)wn6x!hfelyt4b4o^^8e$oeeu3j_f+)85#$51=#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '*.up.railway.app', 'prolimper20-production.up.railway.app']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '*.up.railway.app', 'prolimper.up.railway.app/']
 
 
 # Application definition
@@ -148,4 +148,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS = ['https://https://prolimper20-production.up.railway.app/','http://https://prolimper20-production.up.railway.app/']
+CSRF_TRUSTED_ORIGINS = ['https://prolimper.up.railway.app/','http://prolimper.up.railway.app/']
