@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-wet+5-w-oc@)wn6x!hfelyt4b4o^^8e$oeeu3j_f+)85#$51=#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '*.up.railway.app', 'https://prolimper.up.railway.app/']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost','*', '.up.railway.app', 'https://prolimper.up.railway.app/']
 
 
 # Application definition
