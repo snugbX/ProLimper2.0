@@ -1,6 +1,6 @@
-
 from pathlib import Path
 import os
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-wet+5-w-oc@)wn6x!hfelyt4b4o^^8e$oeeu3j_f+)85#$51=#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '*.up.railway.app', 'prolimper20-production.up.railway.app']
 
 
 # Application definition
@@ -131,11 +131,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+MEDIA_URL = "/media/"
+
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'assets/static'), )
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = "/media/"
 
 
 # Default primary key field type
@@ -143,3 +145,4 @@ MEDIA_URL = "/media/"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CSRF_TRUSTED_ORIGINS = ['https://https://prolimper20-production.up.railway.app/','http://https://prolimper20-production.up.railway.app/']
